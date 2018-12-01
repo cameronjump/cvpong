@@ -29,16 +29,19 @@ while True:
         # sort the contours and find the largest one -- we
         # will assume this contour correspondes to the area
         # of my phone
-        cnt = sorted(cnts, key = cv2.contourArea, reverse = True)[0]
+        cnt1 = sorted(cnts, key = cv2.contourArea, reverse = True)[0]
+        cnt2 = sorted(cnts, key = cv2.contourArea, reverse = True)[1]
 
         # compute the (rotated) bounding box around then
         # contour and then draw it      
-        rect = np.int32(cv2.boxPoints(cv2.minAreaRect(cnt)))
-        cv2.drawContours(frame, [rect], -1, (0, 255, 0), 2)
+        rect1 = np.int32(cv2.boxPoints(cv2.minAreaRect(cnt1)))
+        cv2.drawContours(frame, [rect1], -1, (0, 255, 0), 2)
+        rect2 = np.int32(cv2.boxPoints(cv2.minAreaRect(cnt2)))
+        cv2.drawContours(frame, [rect2], -1, (0, 255, 0), 2)
 
     # show the frame and the binary image
     cv2.imshow("Tracking", frame)
-    cv2.imshow("Binary", blue)
+    #cv2.imshow("Binary", blue)
 
     # if your machine is fast, it may display the frames in
     # what appears to be 'fast forward' since more than 32
