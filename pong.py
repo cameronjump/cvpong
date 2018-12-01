@@ -11,6 +11,7 @@ ORANGE =     (255, 165,   0)
 RED =       (255,   0,   0)
 
 screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption('cvpong')
 
 running = True
 clock = pygame.time.Clock()
@@ -23,8 +24,8 @@ class Ball:
 	def __init__(self):
 		self.x = int(width/2)
 		self.y = int(height/2)
-		self.speedx = int(random.uniform(1,5)) * random.choice([-1, 1])
-		self.speedy = int(random.uniform(1,5)) * random.choice([-1, 1])
+		self.speedx = random.uniform(1,5) * random.choice([-1, 1])
+		self.speedy = random.uniform(1,5) * random.choice([-1, 1])
 		self.radius = 20
 
 	def updatePosition(self):
@@ -36,13 +37,13 @@ class Ball:
 			self.speedy = abs(self.speedy) *-1
 		elif self.y <= self.radius:
 			self.speedy = abs(self.speedy)
-		self.x += self.speedx * dt
-		self.y += self.speedy * dt
+		self.x += int(self.speedx * dt)
+		self.y += int(self.speedy * dt)
 
 	def isScore(self):
-		if self.x >= width-self.radius:
+		if self.x >= width+2*self.radius:
 			return (True, 'A')
-		elif self.x <= self.radius:
+		elif self.x <= -2*self.radius:
 			return (True, 'B')
 		return (False , None)
 
@@ -55,8 +56,8 @@ class Ball:
 def drawField():
 	pygame.draw.rect(screen,WHITE, [int(width/2),0,2,height])
 	font = pygame.font.SysFont("comicsansms", 72)
-	textA = font.render(str(scoreA), True, (0, 128, 0))
-	textB = font.render(str(scoreB), True, (0, 128, 0))
+	textA = font.render(str(scoreA), True, WHITE)
+	textB = font.render(str(scoreB), True, WHITE)
 	screen.blit(textA,(10, 10))
 	screen.blit(textB,(width-textA.get_width()-10, 10))
 
