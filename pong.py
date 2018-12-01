@@ -2,15 +2,15 @@ import pygame
 import random
 
 pygame.init()
-width = 640
-height = 480
+width = 1920
+height = 1080
 
 WHITE =     (255, 255, 255)
 BLUE =      (  0,   0, 255)
 ORANGE =     (255, 165,   0)
 RED =       (255,   0,   0)
 
-screen = pygame.display.set_mode((width, height))
+screen = pygame.display.set_mode((width, height),pygame.FULLSCREEN)
 pygame.display.set_caption('cvpong')
 
 running = True
@@ -87,20 +87,12 @@ while running:
         ev = pygame.event.get()
         dt = int(clock.tick(30) * .1)
 
-        '''for event in ev:
-
-            if event.type == pygame.KEYDOWN:
-
-            	up = True
+        for event in ev:
 
             if event.type == pygame.KEYUP:
-            	up = False
-
-            if event.type == pygame.QUIT:
-                running = False
-
-        if up:
-        	p.moveDown()'''
+            	if event.key == pygame.K_ESCAPE:
+            		running = False
+            	
 
         screen.fill(BLUE)
         drawField()
@@ -117,6 +109,8 @@ while running:
         		scoreB += 1
 
         pygame.display.update()
+
+pygame.quit()
 
 
 
