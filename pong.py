@@ -22,6 +22,8 @@ class Ball:
 		self.x += 1
 		self.y += 1
 
+
+
 	def getPosition(self):
 		return (self.x,self.y)
 
@@ -42,12 +44,12 @@ while running:
 
         for event in ev:
 
-            if event.type == pygame.KEYUP:
+            if event.type == pygame.KEYDOWN:
             	drawCircle()
             	b.updatePosition()
             	pygame.display.update()
 
             if event.type == pygame.QUIT:
-                running = False'''
+                running = False
 
 
