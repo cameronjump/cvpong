@@ -2,8 +2,8 @@ import pygame
 import random
 
 pygame.init()
-width = 1920
-height = 1080
+width = 1800
+height = 980
 
 WHITE =     (255, 255, 255)
 BLUE =      (  0,   0, 255)
