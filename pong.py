@@ -39,7 +39,15 @@ def drawCircle():
 while running:
         ev = pygame.event.get()
         screen.fill(GREEN)
-        drawCircle()
-        pygame.display.update()
+
+        for event in ev:
+
+            if event.type == pygame.KEYUP:
+            	drawCircle()
+            	b.updatePosition()
+            	pygame.display.update()
+
+            if event.type == pygame.QUIT:
+                running = False'''
 
 
