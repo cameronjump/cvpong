@@ -14,7 +14,7 @@ if __name__ == '__main__':
     tracker_type = tracker_types[2]
 
     if int(minor_ver) < 3:
-        tracker = cv2.Tracker_create(tracker_type)
+        tracker = cv2.MultiTracker_create(tracker_type)
     else:
         if tracker_type == 'BOOSTING':
             tracker = cv2.TrackerBoosting_create()
@@ -50,13 +50,16 @@ if __name__ == '__main__':
         sys.exit()
 
     # Define an initial bounding box
-    bbox = (287, 23, 86, 320)
+    bbox = (287, 23, 86, 100)
+    bbox2 = (287,23,86,100)
 
     # Uncomment the line below to select a different bounding box
     #bbox = cv2.selectROI(frame, False)
+    #bbox2 = cv2.selectROI(frame,False)
 
     # Initialize tracker with first frame and bounding box
-    ok = tracker.init(frame, bbox)
+    ok = cv2.MultiTracker_create()
+
 
     while True:
         # Read a new frame
@@ -68,7 +71,9 @@ if __name__ == '__main__':
         timer = cv2.getTickCount()
 
         # Update tracker
+        ok.add(tracker,frame,bbox2)
         ok, bbox = tracker.update(frame)
+
 
         # Calculate Frames per second (FPS)
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer);

@@ -42,4 +42,3 @@ while running:
         drawCircle()
         pygame.display.update()
 
-
