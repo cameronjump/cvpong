@@ -266,6 +266,10 @@ while running:
 
 	        # Average values (center)
 	        center1 = ((x11+x12+x13+x14)/(640*4), (y11+y12+y13+y14)/(480*4))
+	        print(center1)
+	        x1 = center1[0]
+	        y2 = center1[1]
+
 
 	        # find center of second rec
 	        rect2 = np.int32(cv2.boxPoints(cv2.minAreaRect(cnt2)))
@@ -283,6 +287,9 @@ while running:
 
 	        # Average values (center)
 	        center2 = ((x21 + x22 + x23 + x24) / (640*4), (y21 + y22 + y23 + y24) / (480*4))
+	        print(center2)
+	        x2 = center2[0]
+	        y2 = center2[1]
 
 	        cv2.drawContours(frame, [rect1], -1, (0, 255, 0), 2)
 	        rect2 = np.int32(cv2.boxPoints(cv2.minAreaRect(cnt2)))
